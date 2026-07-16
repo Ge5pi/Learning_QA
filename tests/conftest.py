@@ -1,6 +1,7 @@
 from app.cart import Cart
 import pytest
 from app.products import Product, ProductService
+from app.auth import AuthService, User
 
 @pytest.fixture
 def cart():
@@ -20,3 +21,14 @@ def product_service(product):
     product_service = ProductService()
     product_service.add_product(product)
     return product_service
+
+@pytest.fixture
+def empty_auth_service():
+    auth = AuthService()
+    return auth
+
+@pytest.fixture
+def auth_service():
+    auth = AuthService()
+    auth.register("gespi", "gespi")
+    return auth
