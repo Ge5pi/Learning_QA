@@ -1,4 +1,3 @@
-from app import cart
 import pytest
 
 def test_cart_creation(cart):
