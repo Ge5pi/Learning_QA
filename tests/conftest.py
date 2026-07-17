@@ -1,7 +1,9 @@
 from app.cart import Cart
 import pytest
+from unittest.mock import Mock
+from app.orders import OrderService
 from app.products import Product, ProductService
-from app.auth import AuthService, User
+from app.auth import AuthService
 
 @pytest.fixture
 def cart():
@@ -32,3 +34,16 @@ def auth_service():
     auth = AuthService()
     auth.register("gespi", "gespi")
     return auth
+
+@pytest.fixture
+def order_service():
+    order = OrderService()
+    order.payment.pay = Mock()
+    return order
+
+@pytest.fixture
+def order_service_false():
+    order = OrderService()
+    order.payment.pay = Mock()
+    order.payment.pay.return_value = False
+    return order
